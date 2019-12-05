@@ -15,14 +15,14 @@ let execute data ic =
   let op1 = data.(data.(ic + 1)) in
   let op2 = data.(data.(ic + 2)) in
   match data.(ic) with
-    1 -> data.(data.(ic + 3)) <- op1 + op2
+  | 1 -> data.(data.(ic + 3)) <- op1 + op2
   | 2 -> data.(data.(ic + 3)) <- op1 * op2
-  | _ as i -> invalid_arg ("Halt at invalid input: " ^ (string_of_int i))
+  | i -> invalid_arg ("Halt at invalid input: " ^ string_of_int i)
 
 let rec run_until_halt ic data =
   match data.(ic) with
-    99 -> data.(0)
-  | _ -> execute data ic;
+  | 99 -> data.(0)
+  |  _ -> execute data ic;
          run_until_halt (ic + 4) data
 
 let rec find_verb noun data =
